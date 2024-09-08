@@ -25,7 +25,7 @@ const CountrySelector: React.FC<CountrySelectorProps> = ({
           onChange={(e) => onChange(e.target.value)}
           className="mt-1 block w-60 pl-4 pr-12 py-3 text-gray-500 border border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base rounded-2xl appearance-none"
         >
-          <option value="" disabled>
+          <option value="" disabled selected>
             Eg: Nepal
           </option>
           <option value="Nepal">USA</option>

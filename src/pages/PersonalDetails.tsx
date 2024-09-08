@@ -5,7 +5,9 @@ import * as z from "zod";
 import DateSelector from "../Components/DateSelector";
 import GenderSelect from "../Components/GenderSelect";
 import { useNavigate } from "react-router-dom";
-
+import background from "../asstes/background.png";
+import logo from "../asstes/logo.png";
+import { ProgressBar } from "../Components/progressBar/ProgressBar";
 // Define schema with zod
 const schema = z.object({
   Fname: z.string().min(1, { message: "First name is required" }),
@@ -39,7 +41,7 @@ const PersonalDetail: React.FC = () => {
   const submitHandler: SubmitHandler<FormFields> = (data) => {
     const dd = JSON.stringify(data);
     localStorage.setItem("personalDetails", dd);
-    navigate("/adress");
+    navigate("/address");
     console.log(data);
   };
 
@@ -57,17 +59,32 @@ const PersonalDetail: React.FC = () => {
 
   return (
     <>
-      <div className="w-full h-screen flex justify-center items-center flex-col bg-green-400">
-        <div className="w-full font-bold text-3xl text-center m-2">
-          <span>Register</span>
+      <div
+        className="w-full  flex  h-screen justify-center items-center flex-col  bg-cos-bg"
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        <div className="  w-full flex justify-start ">
+          <img src={logo} alt="logo" className="h-20 w-28 ml-8" />
+        </div>{" "}
+        <div className="w-full font-bold  flex text-3xl text-center mb-16 ">
+          <div className="flex w-full justify-center pl-4">
+            <span className="">Register</span>
+          </div>
         </div>
-        <div className="w-custom-width h-custom-height p-2 bg-transparent rounded-3xl border">
-          <div className="w-full flex justify-start font-bold text-2xl m-3">
+        <ProgressBar step={1} />
+        <div className="w-custom-width h-custom-height p-2 bg-white bg-opacity-90 rounded-3xl border mb-9">
+          <div className="w-full flex justify-start font-bold text-2xl m-2">
             <span>Personal Details</span>
           </div>
 
           <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="w-full flex gap-11 m-1 mt-10 mb-6">
+            <div className="w-full flex gap-11 m-1 mt-7 mb-6">
               <div>
                 <label htmlFor="Fname" className="ml-4 font-bold">
                   First Name
@@ -115,7 +132,7 @@ const PersonalDetail: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-full flex m-1 mt-11 gap-11 mb-5">
+            <div className="w-full flex m-1 mt-5 gap-11 mb-5">
               <div>
                 <label htmlFor="Phone" className="ml-4 font-bold">
                   Phone

@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ProgressBar } from "../Components/progressBar/ProgressBar";
+import background from "../asstes/background.png";
+import logo from "../asstes/logo.png";
 
 const ProfilePage = () => {
   const [profileImage, setProfileImage] = useState<string | ArrayBuffer | null>(
@@ -20,7 +23,7 @@ const ProfilePage = () => {
     }
   };
   const backHandler = () => {
-    navigate("/adress");
+    navigate("/address");
   };
 
   const nextHandler = () => {
@@ -37,21 +40,35 @@ const ProfilePage = () => {
 
   return (
     <>
-      <div className="w-full h-screen flex justify-center items-center flex-col bg-green-400">
-        <div className="w-full font-bold text-3xl text-center m-2">
+      <div
+        className="w-full h-screen flex justify-center items-center flex-col bg-cos-bg"
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        <div className="  w-full flex justify-start ">
+          <img src={logo} alt="logo" className=" h-20 w-28 ml-8 m-1" />
+        </div>{" "}
+        <div className="w-full font-bold text-3xl text-center pl-4 ">
           <span>Register</span>
         </div>
-        <div className="bg-transparent flex items-center justify-center h-screen">
-          <div className="bg-transparent w-costum-width-1 rounded-lg shadow-md p-6 h-costum-h-3">
-            <h2 className="text-center text-xl font-semibold mb-3">
+        <ProgressBar step={3} />
+        <div className="bg-transparent flex items-center justify-center h-screen mb-9">
+          <div className=" bg-white bg-opacity-90 w-costum-width-1 rounded-lg shadow-md p-4 h-auto">
+            <h2 className="text-center text-xl font-semibold mb-2">
               Set Your Profile Picture
             </h2>
-            <div className="flex justify-center mb-4 m-5">
+            <div className="flex justify-center mb-1 m-2">
               <div className="relative">
                 <img
                   src={profileImage as string | undefined}
                   alt="Profile"
-                  className="w-56 h-64 rounded-2xl border border-gray-300"
+                  className="w-56 h-60 rounded-2xl border border-gray-300"
                 />
                 <div>
                   <button className="bg-green-500 ml-5 text-white p-1 w-48 rounded-full m-2">
@@ -66,7 +83,7 @@ const ProfilePage = () => {
                 </div>
               </div>
             </div>
-            <div className="flex justify-end gap-2 mt-20">
+            <div className="flex justify-end gap-3 mt-2">
               <button
                 className="bg-gray-500 text-white py-2 px-4 w-24 rounded-md"
                 onClick={backHandler}

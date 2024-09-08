@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { ProgressBar } from "../Components/progressBar/ProgressBar";
+import background from "../asstes/background.png";
+import logo from "../asstes/logo.png";
 
 interface PersonalDetailsType {
   Fname: string;
@@ -57,16 +60,33 @@ const ReviewPage = () => {
 
   return (
     <>
-      <div className="w-full h-screen flex justify-center items-center flex-col bg-green-400">
+      <div
+        className="w-full h-screen flex justify-center items-center flex-col bg-cos-bg"
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        <div className="  w-full flex justify-start ">
+          <img
+            src={logo}
+            alt="logo"
+            className="absolute top-2 h-20 w-28 ml-8"
+          />
+        </div>{" "}
         <div className="w-full font-bold text-3xl text-center m-2">
           <span> Register</span>
         </div>
-        <div className="bg-transparent w-costum-width-1 rounded-lg shadow-md p-6 h-auto">
+        <ProgressBar step={4} />
+        <div className=" bg-white bg-opacity-90 w-costum-width-1 rounded-lg shadow-md pl-7 h-auto mb-10">
           <div className=" w-full flex justify-center text-2xl font-bold">
             Review Your Details
           </div>
           {/* Profile Section */}
-          <div className="flex items-center space-x-4 mb-2">
+          <div className="flex items-center gap-4 ">
             <img
               src={
                 imageURL ||
@@ -77,11 +97,11 @@ const ReviewPage = () => {
             />
           </div>
 
-          <div className="flex flex-col w-full p-3">
-            <h3 className="text-xl font-semibold m-3">Personal Details</h3>
+          <div className="flex flex-col w-full p-1">
+            <h3 className="text-xl font-semibold m-1 ">Personal Details</h3>
             {/* Personal Details */}
             {personalDetails ? (
-              <div className="flex flex-col  gap-3">
+              <div className="flex flex-col  gap-1">
                 <div className="flex  gap-7">
                   <p>
                     <strong>First Name:</strong> {personalDetails.Fname}
@@ -110,10 +130,10 @@ const ReviewPage = () => {
             )}
           </div>
 
-          <div className="flex p-3">
+          <div className="flex p-1">
             {/* Address Details */}
             {address ? (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-1">
                 <div className="flex gap-7">
                   <div>
                     <strong>Country: </strong>
@@ -128,7 +148,7 @@ const ReviewPage = () => {
                     <p>{address.municipality}</p>
                   </div>
                 </div>
-                <div className="flex  gap-7">
+                <div className="flex  gap-14">
                   <div>
                     <strong>City: </strong>
                     <p>{address.city}</p>
@@ -145,7 +165,7 @@ const ReviewPage = () => {
           </div>
 
           {/* Buttons Section */}
-          <div className="mt-2 flex justify-end space-x-4">
+          <div className="flex justify-end gap-8 p-1">
             <button
               className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
               onClick={backHandler}

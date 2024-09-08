@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import logo from "../asstes/logo.png";
+import background from "../asstes/background.png";
 
 interface PersonalDetailsType {
   Fname: string;
@@ -46,10 +47,25 @@ const DetailsPage = () => {
 
   return (
     <>
-      <div className="w-full h-screen flex justify-center items-center flex-col bg-green-400">
-        <div className="bg-transparent w-costum-width-1 rounded-lg shadow-md p-6 h-auto">
+      <div
+        className="w-full h-screen flex justify-center items-center flex-col bg-cos-bg"
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "100vh",
+          width: "100%",
+        }}
+      >
+        <div className="  w-full flex justify-start ">
+          <img src={logo} alt="logo" className="h-20 w-28 ml-10" />
+        </div>{" "}
+        <div className="bg-white bg-opacity-90 w-costum-width-1 rounded-lg shadow-md p-6 h-auto">
+          <div className="w-full flex justify-center font-bold text-2xl m-2">
+            <span>My Details</span>
+          </div>
           {/* Profile Section */}
-          <div className="flex items-center space-x-4 mb-2">
+          <div className="flex items-center space-x-4 mb-1">
             <img
               src={
                 imageURL ||
@@ -64,7 +80,7 @@ const DetailsPage = () => {
             <h3 className="text-xl font-semibold m-3">Personal Details</h3>
             {/* Personal Details */}
             {personalDetails ? (
-              <div className="flex flex-col  gap-3">
+              <div className="flex flex-col  gap-2">
                 <div className="flex  gap-7">
                   <p>
                     <strong>First Name:</strong> {personalDetails.Fname}
@@ -96,7 +112,7 @@ const DetailsPage = () => {
           <div className="flex p-3">
             {/* Address Details */}
             {address ? (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-2">
                 <div className="flex gap-7">
                   <div>
                     <strong>Country: </strong>
@@ -111,7 +127,7 @@ const DetailsPage = () => {
                     <p>{address.municipality}</p>
                   </div>
                 </div>
-                <div className="flex  gap-7">
+                <div className="flex  gap-14">
                   <div>
                     <strong>City: </strong>
                     <p>{address.city}</p>

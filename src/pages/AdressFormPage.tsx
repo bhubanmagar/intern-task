@@ -6,6 +6,9 @@ import CountrySelector from "../Components/Country";
 import MunicipalitySelector from "../Components/Municipality";
 import DistrictSelector from "../Components/DistrictSelector";
 import { useNavigate } from "react-router-dom";
+import { ProgressBar } from "../Components/progressBar/ProgressBar";
+import background from "../asstes/background.png";
+import logo from "../asstes/logo.png";
 
 // Define the form schema using Zod
 const addressSchema = z.object({
@@ -44,13 +47,27 @@ const AddressPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full h-screen flex justify-center items-center flex-col bg-green-400">
-      <div className="w-full font-bold text-3xl text-center m-2">
+    <div
+      className="w-full h-screen flex justify-center items-center flex-col bg-cos-bg"
+      style={{
+        backgroundImage: `url(${background})`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        height: "100vh",
+        width: "100%",
+      }}
+    >
+      <div className="w-full flex justify-start m-0">
+        <img src={logo} alt="logo" className="h-20 w-28 -mt-5 ml-8" />
+      </div>
+      <div className="w-full font-bold text-3xl text-center mb-14 pl-4">
         <span>Register</span>
       </div>
+      <ProgressBar step={2} />
       <div className="">
         <form
-          className="w-full h-auto p-2 bg-transparent rounded-3xl border"
+          className="w-full h-auto p-2 mb-7 bg-white bg-opacity-90 rounded-3xl border"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="w-full flex justify-start font-bold text-2xl m-3 ml-8">
@@ -135,6 +152,9 @@ const AddressPage: React.FC = () => {
             <button
               type="button"
               className="bg-gray-500 text-white font-bold p-2 w-28 rounded-2xl mr-6 mt-6"
+              onClick={() => {
+                navigate("/");
+              }}
             >
               Back
             </button>
