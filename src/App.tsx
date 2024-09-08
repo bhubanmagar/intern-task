@@ -5,6 +5,8 @@ import "./index.css";
 import AdressPage from "./pages/AdressFormPage";
 import PersonalDetail from "./pages/PersonalDetails";
 import ProfilePage from "./pages/ProfilePage";
+import ReviewPage from "./pages/ReviewPage";
+import DetailsPage from "./pages/DetailsPage";
 
 const App: React.FC = () => {
   return (
@@ -13,6 +15,8 @@ const App: React.FC = () => {
         <Route path="/" element={<PersonalDetail />} />
         <Route path="/adress" element={<AdressPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/review" element={<ReviewPage />} />
+        <Route path="/details" element={<DetailsPage />} />
       </Routes>
     </Router>
   );
