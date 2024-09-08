@@ -47,6 +47,9 @@ const DetailsPage = () => {
 
   return (
     <>
+      <div className="  w-full flex justify-start z-20 bg-transparent absolute top-2 ">
+        <img src={logo} alt="logo" className=" h-20 w-28 ml-8" />
+      </div>{" "}
       <div
         className="w-full h-screen flex justify-center items-center flex-col bg-cos-bg"
         style={{
@@ -57,9 +60,6 @@ const DetailsPage = () => {
           width: "100%",
         }}
       >
-        <div className="  w-full flex justify-start ">
-          <img src={logo} alt="logo" className="h-20 w-28 ml-10" />
-        </div>{" "}
         <div className="bg-white bg-opacity-90 w-costum-width-1 rounded-lg shadow-md p-6 h-auto">
           <div className="w-full flex justify-center font-bold text-2xl m-2">
             <span>My Details</span>

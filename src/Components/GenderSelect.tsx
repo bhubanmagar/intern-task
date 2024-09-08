@@ -24,7 +24,6 @@ const GenderSelect: React.FC<GenderSelectProps> = ({
             className="form-radio text-green-500"
             name="gender"
             value="male"
-            checked={selectedGender === "male"}
             onChange={handleGenderChange}
           />
           <span className="ml-2 text-gray-700">Male</span>

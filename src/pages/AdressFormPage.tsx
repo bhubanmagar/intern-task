@@ -40,134 +40,140 @@ const AddressPage: React.FC = () => {
 
   // Submission handler (typed using the AddressFormSchema)
   const onSubmit: SubmitHandler<AddressFormSchema> = (data) => {
-    const adress = JSON.stringify(data);
-    localStorage.setItem("address", adress);
+    const address = JSON.stringify(data);
+    localStorage.setItem("address", address);
     navigate("/profile");
     console.log("Form Data: ", data);
   };
 
   return (
-    <div
-      className="w-full h-screen flex justify-center items-center flex-col bg-cos-bg"
-      style={{
-        backgroundImage: `url(${background})`,
-        backgroundSize: "cover",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        height: "100vh",
-        width: "100%",
-      }}
-    >
-      <div className="w-full flex justify-start m-0">
-        <img src={logo} alt="logo" className="h-20 w-28 -mt-5 ml-8" />
+    <>
+      <div className="  w-full flex justify-start z-20 bg-transparent absolute top-2 ">
+        <img src={logo} alt="logo" className=" h-20 w-28 ml-8" />
       </div>
-      <div className="w-full font-bold text-3xl text-center mb-14 pl-4">
-        <span>Register</span>
+      <div
+        className="w-full h-full flex justify-center items-center flex-col bg-cos-bg"
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center",
+          minHeight: "100vh",
+          width: "100%",
+        }}
+      >
+        {/* Logo Section */}
+
+        {/* Title Section */}
+        <div className="w-full text-center absolute top-9 sm:mb-14 pl-4">
+          <h1 className="text-2xl sm:text-3xl font-bold">Register</h1>
+        </div>
+
+        {/* Progress Bar */}
+        <ProgressBar step={2} />
+
+        {/* Form Section */}
+        <div className="w-full max-w-4xl px-4 ">
+          <form
+            className="bg-white bg-opacity-90 rounded-3xl border p-6 sm:p-8"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            {/* Form Title */}
+            <div className="w-full text-left font-bold text-xl sm:text-2xl mb-6">
+              <span>Address</span>
+            </div>
+
+            {/* Country, District, Municipality - Responsive Flexbox */}
+            <div className="w-full flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6">
+              <div className="flex-1">
+                <Controller
+                  name="country"
+                  control={control}
+                  render={({ field }) => <CountrySelector {...field} />}
+                />
+                {errors.country && (
+                  <p className="text-red-500">{errors.country.message}</p>
+                )}
+              </div>
+
+              <div className="flex-1">
+                <Controller
+                  name="district"
+                  control={control}
+                  render={({ field }) => <DistrictSelector {...field} />}
+                />
+                {errors.district && (
+                  <p className="text-red-500">{errors.district.message}</p>
+                )}
+              </div>
+
+              <div className="flex-1">
+                <Controller
+                  name="municipality"
+                  control={control}
+                  render={({ field }) => <MunicipalitySelector {...field} />}
+                />
+                {errors.municipality && (
+                  <p className="text-red-500">{errors.municipality.message}</p>
+                )}
+              </div>
+            </div>
+
+            {/* City and Ward Inputs */}
+            <div className="w-full flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6">
+              <div className="flex-1">
+                <label htmlFor="city" className="ml-1 font-bold">
+                  City
+                </label>
+                <input
+                  type="text"
+                  {...register("city")}
+                  className="p-3 w-full rounded-xl mt-2 border"
+                  placeholder="Eg: Kathmandu"
+                />
+                {errors.city && (
+                  <p className="text-red-500">{errors.city.message}</p>
+                )}
+              </div>
+
+              <div className="flex-1">
+                <label htmlFor="ward" className="ml-1 font-bold">
+                  Ward
+                </label>
+                <input
+                  type="text"
+                  {...register("ward")}
+                  className="p-3 w-full rounded-xl mt-2 border"
+                  placeholder="Eg: 4"
+                />
+                {errors.ward && (
+                  <p className="text-red-500">{errors.ward.message}</p>
+                )}
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="w-full flex justify-between">
+              <button
+                type="button"
+                className="bg-gray-500 text-white font-bold py-2 px-6 rounded-xl"
+                onClick={() => {
+                  navigate("/");
+                }}
+              >
+                Back
+              </button>
+              <button
+                type="submit"
+                className="bg-green-600 text-white font-bold py-2 px-6 rounded-xl"
+              >
+                Next
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
-      <ProgressBar step={2} />
-      <div className="">
-        <form
-          className="w-full h-auto p-2 mb-7 bg-white bg-opacity-90 rounded-3xl border"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <div className="w-full flex justify-start font-bold text-2xl m-3 ml-8">
-            <span>Address</span>
-          </div>
-
-          <div className="w-full flex gap-11 m-1 mt-10 mb-6">
-            {/* Country Selector */}
-            <div>
-              <Controller
-                name="country"
-                control={control}
-                render={({ field }) => <CountrySelector {...field} />}
-              />
-              {errors.country && (
-                <p className="text-red-500">{errors.country.message}</p>
-              )}
-            </div>
-
-            {/* District Selector */}
-            <div>
-              <Controller
-                name="district"
-                control={control}
-                render={({ field }) => <DistrictSelector {...field} />}
-              />
-              {errors.district && (
-                <p className="text-red-500">{errors.district.message}</p>
-              )}
-            </div>
-
-            {/* Municipality Selector */}
-            <div>
-              <Controller
-                name="municipality"
-                control={control}
-                render={({ field }) => <MunicipalitySelector {...field} />}
-              />
-              {errors.municipality && (
-                <p className="text-red-500">{errors.municipality.message}</p>
-              )}
-            </div>
-          </div>
-
-          <div className="w-full flex m-1 mt-11 gap-11 mb-5">
-            {/* City */}
-            <div>
-              <label htmlFor="city" className="ml-4 font-bold ">
-                City
-              </label>
-              <br />
-              <input
-                type="text"
-                {...register("city")}
-                className="p-3 w-60 rounded-xl mt-3"
-                placeholder="Eg: Kathmandu"
-              />
-              {errors.city && (
-                <p className="text-red-500">{errors.city.message}</p>
-              )}
-            </div>
-
-            {/* Ward */}
-            <div>
-              <label htmlFor="ward" className="ml-4 font-bold ">
-                Ward
-              </label>
-              <br />
-              <input
-                type="text"
-                {...register("ward")}
-                className="p-3 w-60 rounded-xl mt-3"
-                placeholder="Eg: 4"
-              />
-              {errors.ward && (
-                <p className="text-red-500">{errors.ward.message}</p>
-              )}
-            </div>
-          </div>
-
-          <div className="w-full flex justify-end">
-            <button
-              type="button"
-              className="bg-gray-500 text-white font-bold p-2 w-28 rounded-2xl mr-6 mt-6"
-              onClick={() => {
-                navigate("/");
-              }}
-            >
-              Back
-            </button>
-            <button
-              type="submit"
-              className="bg-green-600 text-white font-bold p-2 w-28 rounded-2xl mr-6 mt-6"
-            >
-              Next
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    </>
   );
 };
 

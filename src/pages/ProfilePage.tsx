@@ -40,6 +40,9 @@ const ProfilePage = () => {
 
   return (
     <>
+      <div className="  w-full flex justify-start z-20 bg-transparent absolute top-2 ">
+        <img src={logo} alt="logo" className=" h-20 w-28 ml-8" />
+      </div>{" "}
       <div
         className="w-full h-screen flex justify-center items-center flex-col bg-cos-bg"
         style={{
@@ -51,9 +54,6 @@ const ProfilePage = () => {
           width: "100%",
         }}
       >
-        <div className="  w-full flex justify-start ">
-          <img src={logo} alt="logo" className=" h-20 w-28 ml-8 m-1" />
-        </div>{" "}
         <div className="w-full font-bold text-3xl text-center pl-4 ">
           <span>Register</span>
         </div>

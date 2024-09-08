@@ -59,6 +59,9 @@ const PersonalDetail: React.FC = () => {
 
   return (
     <>
+      <div className="  w-full flex justify-start z-20 bg-transparent absolute top-2 ">
+        <img src={logo} alt="logo" className=" h-20 w-28 ml-8" />
+      </div>{" "}
       <div
         className="w-full  flex  h-screen justify-center items-center flex-col  bg-cos-bg"
         style={{
@@ -69,9 +72,6 @@ const PersonalDetail: React.FC = () => {
           width: "100%",
         }}
       >
-        <div className="  w-full flex justify-start ">
-          <img src={logo} alt="logo" className="h-20 w-28 ml-8" />
-        </div>{" "}
         <div className="w-full font-bold  flex text-3xl text-center mb-16 ">
           <div className="flex w-full justify-center pl-4">
             <span className="">Register</span>
